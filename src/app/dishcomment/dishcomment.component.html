@@ -1,0 +1,22 @@
+<div class="container"
+  fxLayout="column"
+  fxLayoutGap="10px">
+
+  <div fxFlex>
+    <div>
+      <h3>Comments</h3>
+      <hr>
+    </div>
+  </div>
+
+  <mat-list fxFlex>
+    <mat-list-item *ngFor="let comment of selectedComments">
+      <h3 matLine>{{comment.comment}}</h3>
+      <p matLine>
+        <span>--{{comment.author}} {{comment.date | date}}</span>
+      </p>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+
