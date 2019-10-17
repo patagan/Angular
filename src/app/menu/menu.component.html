@@ -22,17 +22,4 @@
   <div [hidden]="dishes">
     <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
   </div>
-
-  <div class="container"
-    fxLayout="row"
-    fxLayout.sm="column"
-    fxLayout.xs="column"
-    fxLayoutAlign.gt-md="space-around center"
-    fxLayoutGap="10px" 
-    fxLayoutGap.xs="0"
-    *ngIf="selectedDish">
-
-    <app-dishdetail fxFlex="40" [dish]="selectedDish"></app-dishdetail>
-    <app-dishcomment fxFlex="40" [selectedComments]="selectedDish.comments"></app-dishcomment>
-  </div>
 </div>

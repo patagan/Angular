@@ -2,7 +2,7 @@
   fxLayout="column"
   fxLayoutGap="10px">
 
-  <div fxFlex>
+  <div fxFlex *ngIf="selectedComments">
     <div>
       <h3>Comments</h3>
       <hr>
@@ -17,6 +17,9 @@
       </p>
     </mat-list-item>
   </mat-list>
+  <div [hidden]="selectedComments">
+    <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+  </div>
 </div>
 
 
