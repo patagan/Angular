@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Comment } from '../shared/comment';
 
+import { DishService } from '../services/dish.service';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Dish } from '../shared/dish';
 
 @Component({
   selector: 'app-dishcomment',
@@ -15,9 +18,17 @@ export class DishcommentComponent implements OnInit {
   @Input()
   selectedComments: Comment[];
 
+  @Input()
+  dish: Dish;
+
+  @Input()
+  dishcopy: Dish;
+
   commentForm: FormGroup;
   commentTemplate: Comment;
   index:number;
+
+  errMess: string;
 
   formErrors = {
     'author': '',
@@ -39,7 +50,7 @@ export class DishcommentComponent implements OnInit {
     },
   };
 
-  constructor(private fb : FormBuilder) {
+  constructor(private dishservice: DishService, private fb : FormBuilder) {
     this.createForm();
   }
 
@@ -95,7 +106,12 @@ export class DishcommentComponent implements OnInit {
     console.log(this.commentTemplate);
     this.selectedComments.pop();
     this.index = null;
-    this.selectedComments.push(this.commentTemplate);
+    this.dishcopy.comments.push(this.commentTemplate);
+    this.dishservice.putDish(this.dishcopy)
+      .subscribe(dish => {
+        this.dish = dish; this.dishcopy = dish;
+      },
+      errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
     this.commentForm.reset({
       author: '',
       rating: 1,
