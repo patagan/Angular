@@ -32,5 +32,5 @@
     <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
   </div>
 
-  <app-dishcomment fxFlex="40" [selectedComments]="dish.comments"></app-dishcomment>
+  <app-dishcomment fxFlex="40" *ngIf="dish" [selectedComments]="dish.comments"></app-dishcomment>
 </div>
