@@ -2,7 +2,7 @@
   fxLayout="column"
   fxLayoutGap="10px">
 
-  <mat-list fxFlex>
+  <mat-list fxFlex  [@expand]>
     <mat-list-item *ngFor="let leader of leaders">
       <img matListAvatar src={{leader.image}} alt={{leader.name}}>
       <h1 matLine>{{leader.name}}</h1>
